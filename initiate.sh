@@ -2,7 +2,6 @@
 
 ##### Script de préparation des clients/serveurs et de rollback des clients.
 
-
 ### Pour lancez le script à partir du serveur DHCP fraichement installé, executez ./initiate.sh avec un des arguments suivants :
 
 ## "server-first" A lancer en premier sur un serveur fraichement installé.

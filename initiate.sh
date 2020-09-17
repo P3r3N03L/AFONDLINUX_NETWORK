@@ -38,34 +38,34 @@ then
 	echo 'ATTENTION ! Le système va redémarrer automatiquement à la fin du script ! '
 	
 	echo 'Mise à jour du système '
-	echo [ROOT_PASSWORD] | sudo -S apt-get update
-	echo [ROOT_PASSWORD] | sudo -S apt-get -y upgrade
+	echo <ROOT_PASSWORD> | sudo -S apt-get update
+	echo <ROOT_PASSWORD> | sudo -S apt-get -y upgrade
 	echo 'Système mis à jour. '
 	echo 'All is done ! '	
 
 	echo 'Sauvegarde des fichiers hosts et hostname'
-	echo [ROOT_PASSWORD] | sudo -S cp /etc/hosts /etc/hosts-old
+	echo <ROOT_PASSWORD> | sudo -S cp /etc/hosts /etc/hosts-old
 	echo 'Fichier hosts sauvegardé'
-	echo [ROOT_PASSWORD] | sudo -S cp /etc/hostname /etc/hostname-old
+	echo <ROOT_PASSWORD> | sudo -S cp /etc/hostname /etc/hostname-old
 	echo 'Fichier hostname sauvegardé'
 	echo 'All is done ! '
 
 	echo 'Installation de vim'
-	echo [ROOT_PASSWORD] | sudo -S apt-get -y install vim
+	echo <ROOT_PASSWORD> | sudo -S apt-get -y install vim
 	echo 'All is done ! '
 
 	echo 'Création des utilisateurs prédéfinis pour les formations.'
 	echo "Création de l'utilisateur 'admininfra'. "
-	echo [ROOT_PASSWORD] | sudo -S useradd -m -p $(openssl passwd -1 sprvsr) admininfra
+	echo <ROOT_PASSWORD> | sudo -S useradd -m -p $(openssl passwd -1 sprvsr) admininfra
 	echo "Utilisateur 'admininfra' créé. "
-	echo [ROOT_PASSWORD] | sudo -S usermod -a -G sudo admininfra
+	echo <ROOT_PASSWORD> | sudo -S usermod -a -G sudo admininfra
 	echo "Utilisateur 'admininfra' ajouté au groupe 'sudo'. "
 	echo 'Vérification : '
 	id admininfra
 	echo 'All is done ! '
 
 	echo "Création de l'uilisateur 'student'. "
-	echo [ROOT_PASSWORD] | sudo -S useradd -m -p $(openssl passwd -1 aflstud) student
+	echo <ROOT_PASSWORD> | sudo -S useradd -m -p $(openssl passwd -1 aflstud) student
 	echo "Utilisateur 'student' créé. "
 	echo 'Vérifcation : '
 	id student
@@ -77,14 +77,14 @@ then
 	hostn=$(cat /etc/hostname)
 	echo "Ancien hostname : $hostn "
 	echo 'Définition du hostname'
-	echo [ROOT_PASSWORD] | sudo -S sed -i "s/$hostn/AFL1DSK$val/g" /etc/hosts
-	echo [ROOT_PASSWORD] | sudo -S sed -i "s/$hostn/AFL1DSK$val/g" /etc/hostname
+	echo <ROOT_PASSWORD> | sudo -S sed -i "s/$hostn/AFL1DSK$val/g" /etc/hosts
+	echo <ROOT_PASSWORD> | sudo -S sed -i "s/$hostn/AFL1DSK$val/g" /etc/hostname
 	echo 'Vérifications : '
 	hostnamectl
 	echo 'All is done ! '
 
 	echo 'Le système va maintenant redémarrer pour appliquer les changements. '
-	echo [ROOT_PASSWORD] | sudo -S reboot
+	echo <ROOT_PASSWORD>| sudo -S reboot
 	exit
 
 

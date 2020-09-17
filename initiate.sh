@@ -170,7 +170,7 @@ then
 	
 	echo 'Création du fichier iplist_nmap'
 	echo 'Scan des réseaux'
-	ip=$(nmap -sP 192.168.100.0/24 192.168.101.0/24)
+	ip=$(nmap -sP [LOCAL_SUBNET_1] [LOCAL_SUBNET_2])
 	echo 'Résultat : '
 	echo $ip
 	echo 'Génération du fichier iplist_nmap'
@@ -182,7 +182,7 @@ then
 
 	echo 'Création du fichier pssh_hosts'
 	echo 'Recupération des IP'
-	hosts=$(awk '!/192.168.100.254|192.168.101.254/' iplist_nmap)
+	hosts=$(awk '!/[LOCAL_SUBNET_1]|[LOCAL_SUBNET_2]/' iplist_nmap)
 	echo 'Génération du fichier pssh_hosts'
 	echo "$hosts" >> pssh_hosts
 	echo 'Vérification : '
@@ -315,13 +315,13 @@ then
 	echo 'All is done ! '
 
 	echo 'Lancement des vérifications'
-	test1=$(fping -aq -g 192.168.0.0/24)
+	test1=$(fping -aq -g [LOCAL_SUBNET_0])
 	echo $test1
 	echo $test1 >> test-subnet0
-	test2=$(fping -aq -g 192.168.100.0/24)
+	test2=$(fping -aq -g [LOCAL_SUBNET_1])
 	echo $test2
 	echo $test2 >> test-subnet100
-	test3=$(fping -aq -g 192.168.101.0/24)
+	test3=$(fping -aq -g [LOCAL_SUBNET_2])
 	echo $test3
 	echo $test3 >> test-subnet101
 	echo 'All is done ! '

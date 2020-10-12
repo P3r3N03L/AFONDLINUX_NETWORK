@@ -258,7 +258,7 @@ then
 	echo "Vous avez choisis le script $0 avec l'option $1"
 
 	echo 'Mis à jour du système'
-	echo SprVsr | sudo -S apt-get update
+	echo <ROOT_PASSWORD> | sudo -S apt-get update
 	echo "Suppression des utilisateurs créés"	
 	echo "Suppression de l'utilisateur 'admininfra'"
 	sudo deluser admininfra --remove-all-files
@@ -271,15 +271,15 @@ then
 	echo 'All is done ! '
 
 	echo 'Restauration des fichiers hosts et hostname'
-	echo SprVsr | sudo -S mv /etc/hosts-old /etc/hosts
+	echo <ROOT_PASSWORD> | sudo -S mv /etc/hosts-old /etc/hosts
 	echo 'Fichier hosts restauré'
-	echo SprVsr | sudo -S mv /etc/hostname-old /etc/hostname
+	echo <ROOT_PASSWORD> | sudo -S mv /etc/hostname-old /etc/hostname
 	echo 'Fichier hostname restauré. '
 	echo 'Vérification du hostname'
 	hostnamectl
 	echo 'All is done ! '
 	echo 'Le système va redémarrer pour appliquer les changements, bye ! '
-	echo SprVsr | sudo -S reboot now
+	echo <ROOT_PASSWORD> | sudo -S reboot now
 	exit
 
 
@@ -305,12 +305,12 @@ then
 	echo "Vous avez choisis le script $0 avec l'option $1. "
 
 	echo 'Installation de fping'
-	echo SprVsr | sudo -S apt-get -y install fping
+	echo <ROOT_PASSWORD> | sudo -S apt-get -y install fping
 	echo 'fping installé. '
 	echo 'Supression des anciens fichiers'
-	echo SprVsr | sudo rm test-subnet0
-	echo SprVsr | sudo rm test-subnet100
-	echo SprVsr | sudo rm test-subnet101
+	echo <ROOT_PASSWORD> | sudo rm test-subnet0
+	echo <ROOT_PASSWORD> | sudo rm test-subnet100
+	echo <ROOT_PASSWORD> | sudo rm test-subnet101
 	echo 'All is done ! '
 
 	echo 'Lancement des vérifications'
